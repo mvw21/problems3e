@@ -1,0 +1,105 @@
+import java.util.*;
+
+import static java.util.stream.Collectors.*;
+        import static java.util.Map.Entry.*;
+
+/*
+ * Java Program to sort a Map by values in Java 8
+ *
+ */
+public class chernova313 {
+
+    public static void main(String[] args) throws Exception {
+
+        // a Map with string keys and integer values
+        Map<String, Integer> budget = new HashMap<>();
+        budget.put("clothes", 120);
+        budget.put("grocery", 150);
+        budget.put("transportation", 100);
+        budget.put("utility", 130);
+        budget.put("rent", 1150);
+        budget.put("miscellneous", 90);
+
+        System.out.println("map before sorting: " + budget);
+
+        // let's sort this map by values first
+        Map<String, Integer> sorted = budget
+                .entrySet()
+                .stream()
+                .sorted(comparingByValue())
+                .collect(
+                        toMap(e -> e.getKey(), e -> e.getValue(), (e1, e2) -> e2,
+                                LinkedHashMap::new));
+
+        for(Map.Entry<String,Integer>entry : sorted.entrySet()){
+            System.out.printf("%s -> %d%n", entry.getKey(),entry.getValue());
+        }
+
+        // above code can be cleaned a bit by using method reference
+//        sorted = budget
+//                .entrySet()
+//                .stream()
+//                .sorted(comparingByValue())
+//                .collect(
+//                        toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
+//                                LinkedHashMap::new));
+
+
+
+        // now let's sort the map in decreasing order of value
+        sorted = budget
+                .entrySet()
+                .stream()
+                .sorted(Collections.reverseOrder(Map.Entry.comparingByValue()))
+                .collect(
+                        toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e2,
+                                LinkedHashMap::new));
+
+        System.out.println("map after sorting by values in descending order: ");
+        for(Map.Entry<String,Integer>entry : sorted.entrySet()){
+            System.out.printf("%s -> %d%n", entry.getKey(),entry.getValue());
+        }
+
+
+        //Нормално принтиране на Мап <String,List> value-tata са стрингове по азбучен ред подредени.
+        //key-овете се подреждат според това дали мапа ти е Tree ili LinkedHashMap
+        Map<String, List<String>> mapName = new LinkedHashMap<>();
+        for (Map.Entry<String, List<String>> entry : mapName.entrySet()) {
+            System.out.println(entry.getKey());
+            for (int i = 0; i < entry.getValue().size(); i++) {
+                System.out.printf("-- %s%n", entry.getValue().get(i));
+            }
+
+        }
+
+        //When you finish reading data, keep students with average grade higher or equal to 4.50.
+        // Order filtered students by average grade in descending order
+
+
+        Map<String, List<Double>> students = new LinkedHashMap<>();
+        Map<String, Double> averageGrade = new LinkedHashMap<>();
+        for (Map.Entry<String, List<Double>> kvp : students.entrySet()) {
+            double average = kvp.getValue().stream().mapToDouble(x -> x).average().getAsDouble();
+            if (average >= 4.50) {
+                averageGrade.put(kvp.getKey(), average);
+            }
+        }
+
+        averageGrade.entrySet().stream()
+                .sorted((g1, g2) -> g2.getValue().compareTo(g1.getValue()))
+                .forEach(grade -> {
+                    System.out.println(String.format("%s -> %.2f", grade.getKey(), grade.getValue()));
+                });
+
+        //print the courses,ordered by the count of registered users in descending order.
+        //For each contest print registered users ordered by name in ascending order.
+        courses.entrySet().stream().sorted((x1,x2)->Integer.compare(x2.getValue().size(),x1.getValue().size())).forEach(x->{
+            System.out.println(String.format("%s: %d",x.getKey(),x.getValue().size()));
+            Collections.sort(x.getValue());
+            x.getValue().forEach(a-> System.out.println("-- "+a));
+        });
+
+
+    }
+
+}
