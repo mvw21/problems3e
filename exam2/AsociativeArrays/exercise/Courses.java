@@ -19,12 +19,27 @@ public class Courses {
 
             courses.putIfAbsent(data[0],new ArrayList<>());
             courses.get(data[0]).add(data[1]);
-
+        
         }
-        courses.entrySet().stream().sorted((e1,e2)->Integer.compare(e2.getValue().size(),e1.getValue().size())).forEach(e->{
-            System.out.println(String.format("%s: %d",e.getKey(),e.getValue().size()));
-            Collections.sort(e.getValue());
-            e.getValue().forEach(a-> System.out.println("-- "+a));
+        //print the courses,ordered by the count of registered users in descending order.
+        //For each contest print registered users ordered by name in ascending order.
+      courses.entrySet().stream()
+          .sorted((x1,x2)->Integer.compare(x2.getValue().size(),x1.getValue().size()))
+          .forEach(x->{
+            System.out.println(String.format("%s: %d",x.getKey(),x.getValue().size()));
+            Collections.sort(x.getValue());
+            x.getValue().forEach(a-> System.out.println("-- "+a));
         });
     }
 }
+
+/*   
+Output example:
+Programming Fundamentals: 2
+-- John Smith
+-- Linda Johnson
+JS Core: 1
+-- Will Wilson
+Java Advanced: 1
+
+/*
