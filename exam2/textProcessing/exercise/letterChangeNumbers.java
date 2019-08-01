@@ -11,10 +11,12 @@ public class letterChangeNumbers {
 
         for (String string : strings) {
             double number = Double.parseDouble(string.substring(1, string.length() - 1));
-            if (number == 0) {
-                System.out.println(0);
-                return;
-            }
+            
+           //и без тази проверка за 0 , пак минава
+//             if (number == 0) {   
+//                 System.out.println(0);
+//                 return;
+//             }
 
             char firstLetter = string.charAt(0);
             int firstLetterPosition = FindLetterPosition(firstLetter);
