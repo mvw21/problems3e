@@ -5,7 +5,9 @@ import java.util.*;
 public class studentAcademy {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+        
+        //Мап от String и List<> ; 
+        
         Map<String, List<Double>> students = new LinkedHashMap<>();
         int n = Integer.parseInt(scanner.nextLine());
 
@@ -13,6 +15,8 @@ public class studentAcademy {
             String studentName = scanner.nextLine();
             double grade = Double.parseDouble(scanner.nextLine());
 
+            //Вкарване в мапа - проверка дали го има или не и след това вкарване ако е нужно.
+            
             if (!students.containsKey(studentName)) {
                 students.put(studentName, new ArrayList<>());
                 students.get(studentName).add(grade);
@@ -23,6 +27,8 @@ public class studentAcademy {
 
         Map<String, Double> averageGrade = new LinkedHashMap<>();
 
+        //Вървиш по мапа и гледаш value-to което getvash , дали е >=4.50(оценката по условие) 
+        
         for (Map.Entry<String, List<Double>> kvp : students.entrySet()) {
             double average = kvp.getValue().stream().mapToDouble(x -> x).average().getAsDouble();
             if (average >= 4.50) {
