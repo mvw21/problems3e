@@ -105,6 +105,8 @@ public class chernova313 {
                 .collect(Collectors.toList());
 
 
+
+        // Още едно принтиране  - сортиране по value , лимитиране до 3 и принтиране.
     }
 
 }
