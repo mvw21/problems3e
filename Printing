@@ -99,6 +99,11 @@ public class chernova313 {
             x.getValue().forEach(a-> System.out.println("-- "+a));
         });
 
+ //Ordering a list , using Stream API
+        List<Integer> sorted = Arrays.stream(scanner.nextLine().split(" "))
+                .map(Integer::parseInt).sorted((n1,n2)->n2.compareTo(n1))
+                .collect(Collectors.toList());
+
 
     }
 
