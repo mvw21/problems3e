@@ -47,3 +47,10 @@ public class Furniture {
         System.out.printf("Total money spend: %.2f",sum);
     }
 }
+
+/* 
+(?!) - negative lookahead  - o(?!d=j) - маркира всяко о , след което няма j
+(?=) - positive lookahead  - o(?=j) -  маркира всяко о , след което има j
+(?<=) - positive lookbehind - (?<=j)o - маркира всяко о , преди което има j
+(?<!) - negative lookbehind - (?<!j)o - маркира всяко о , преди което няма j
+*/
