@@ -34,7 +34,10 @@ public class forceBook {
             }
             input = scan.nextLine();
         }
-        sides.entrySet().stream().filter(i -> i.getValue().size() > 0).sorted((o1, o2) -> Integer.compare(o2.getValue().size(), o1.getValue().size()))
+        sides.entrySet()
+            .stream()
+            .filter(i -> i.getValue().size() > 0).
+            sorted((o1, o2) -> Integer.compare(o2.getValue().size(), o1.getValue().size()))
                 .forEach(e -> {System.out.printf("Side: %s, Members: %d%n", e.getKey(), e.getValue().size());
                     e.getValue().stream().sorted(Comparator.naturalOrder()).forEach(p -> System.out.printf("! %s%n", p));});}
 
